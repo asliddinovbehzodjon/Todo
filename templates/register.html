@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load static %}
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+     
+ 
+     <title>Todo App</title>
+</head>
+<body>
+
+     {% include "navbar.html" %}
+
+
+     {% for message in messages  %}
+          
+       
+     {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+         
+    
+         
+      <div class="alert alert-success" role="alert">
+          {{message}}
+        </div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+         
+    
+         
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+          </div>
+          {% endif %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+         
+    
+         
+          <div class="alert alert-info" role="alert">
+              {{message}}
+            </div>
+            {% endif %}
+        {% endfor %}
+     <div class="register">
+         <form method="POST">
+              {% csrf_token %}
+          <center>
+               <input type="text" class="reg" name="username" id="" placeholder="Usernamegizni kiriting">
+               <input class="reg" type="password" name="psw1" id="" placeholder="Parolingizni kiriting">
+     
+               <input class="reg" type="password" name="psw2" id="" placeholder="Parolingizni qayta kiriting">
+               <input class="reg" type="submit" value="Ro'yxatdan o'tish">
+              </center>
+         </form>
+     </div>
+</body>
+</html>

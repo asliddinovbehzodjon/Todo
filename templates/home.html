@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load static %}
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+     <title>Todo App</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+<div class="add">
+     <form method="POST">
+          {% csrf_token %}
+          <input type="text" name="work" id="" placeholder="Vazifani kiriting" required>
+         <input type="datetime-local" name="start" id="" required>
+         <input type="datetime-local" name="finish" id="" required>
+          <input type="submit" value="Qo'shish">
+
+     </form>
+</div>
+
+
+
+
+     <div class="todo">
+          <table border="2px solid green">
+               <tr>
+                    <th>Tartib raqam</th>
+                    <th>Vazifa</th>
+                    <th>Boshlanish vaqti</th>
+                    <th>Tugash vaqti</th>
+                    <th>Holat</th>
+                    <th>
+                         Amal
+                    </th>
+               </tr>
+              {% for todo  in todos  %}
+              <tr>
+               <td>{{todo.id}}</td>
+               <td>{{todo.work}}</td>
+               <td>{{todo.start|time:"h:i a"}}</td>
+               <td>{{todo.finish|time:"h:i a"}}</td>
+               <td>
+                   
+                   {% if todo.status == True %}
+                   ✅ Bajarilgan
+                   {% else %}
+                   ♾ Bajarilmoqda
+                   {% endif %}
+                        
+               </td>
+               <td>
+                    <a class="delete" 
+                    href="">
+                        O'chirish
+                    </a>
+                    <a href=""
+                    class="update">
+                         Yangilash
+                    </a>
+                    <a href=""
+                    class="finish">
+                         Tugatish
+                    </a>
+               </td>
+          </tr>
+              {% endfor %}
+               
+          </table>
+     </div>
+</body>
+</html>
